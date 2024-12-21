@@ -1,0 +1,41 @@
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 250px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  overflow-y: auto;
+}
+
+.sidebar .nav-link {
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.sidebar .nav-link:hover,
+.sidebar .nav-link.active {
+  background-color: #155724;
+  color: #fff;
+  border-radius: 4px;
+}
+
+.content-area {
+  margin-left: 250px;
+  padding: 20px;
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+h2 {
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 16px;
+  color: #555;
+}

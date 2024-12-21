@@ -1,0 +1,49 @@
+<div class="container mt-4">
+    <h2 class="text-center mb-4 animate__animated animate__fadeInDown">Health Tips Management</h2>
+  
+    <!-- Add Health Tip Button -->
+    <div class="text-end mb-3">
+      <button class="btn btn-success animate__animated animate__fadeIn" (click)="onAddHealthTip()">Add Health Tip</button>
+    </div>
+  
+    <!-- Health Tips Table -->
+    <div class="table-responsive shadow-lg rounded animate__animated animate__fadeInUp">
+      <table class="table table-hover table-striped text-center">
+        <thead class="table-dark">
+          <tr>
+            <th>S.No</th>
+            <th>Health Tip Title</th>
+            <th>Description</th>
+            <th>Images</th>
+            <th>CategoryId</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let tip of healthTips; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ tip.TipTitle }}</td>
+            <td>{{ tip.TipDescription }}</td>
+            <td>
+              <img
+                *ngIf="tip.HealthTipsimg"
+                [src]="'data:image/jpeg;base64,' + tip.HealthTipsimg"
+                class="img-thumbnail"
+                width="100"
+                height="100"
+                alt="Image not available"
+              />
+              <span *ngIf="!tip.HealthTipsimg">No Image</span>
+            </td>
+            <td>{{ tip.CategoryId }}</td>
+            <td class="d-flex ">
+              <button class="btn btn-primary btn-sm me-2 mt-2 mb-5" (click)="onEditHealthTip(tip)"><i class="bi bi-pen-fill"></i></button>
+              <button class="btn btn-danger btn-sm mb-5 mt-2 " (click)="onDeleteHealthTip(tip.TipId)"><i class="bi bi-trash3-fill"></i></button>
+            </td>
+            
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

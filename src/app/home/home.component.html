@@ -1,0 +1,150 @@
+<div>
+  <app-slider></app-slider>
+  <div class="heading-container">
+    <div class="heading hover-effect">&ldquo; Here is everything you need &rdquo;</div>
+  </div>
+
+  <div class="container">
+    <!-- Product Row -->
+    <div class="row justify-content-center">
+      <!-- Product Card 1 -->
+      <div class="col-sm-6 col-md-4 col-lg-3 mb-2 mt-5 standards">
+        <div class="product-card">
+          <img 
+            src="https://cdn.pixabay.com/photo/2023/01/11/04/21/apothecary-7710926_1280.jpg" 
+            alt="Product 1" 
+            class="product-image img-fluid">
+          <h3 class="text-center mt-2">Home Remedies</h3>
+          <button class="btn btn-success w-70 rem" routerLink="remedies">
+            <i class="fas fa-leaf "></i> View
+          </button>
+        </div>
+      </div>
+
+      <!-- Product Card 2 -->
+      <div class="col-sm-6 col-md-4 col-lg-3 mb-2 mt-5 standards">
+        <div class="product-card">
+          <img 
+            src="https://cdn.pixabay.com/photo/2023/08/29/18/24/ai-generated-8221927_1280.png" 
+            alt="Product 2" 
+            class="product-image img-fluid">
+          <h3 class="text-center mt-2">Products</h3>
+          <button class="btn btn-danger w-70 rem" routerLink="product">
+            <i class="fas fa-spa"></i> View
+          </button>
+        </div>
+      </div>
+
+      <!-- Product Card 3 -->
+      <div class="col-sm-6 col-md-4 col-lg-3 mb-2 mt-5 standards">
+        <div class="product-card" data-aos="flip-left" data-aos-delay="400">
+          <img 
+            src="https://img.freepik.com/free-vector/self-care-concept-with-man-activities_23-2148530061.jpg?t=st=1732466940~exp=1732470540~hmac=e7e0c8ead1d61cb9beb79060e352de568870103f065d0c63cd697085dbc457d8&w=740" 
+            alt="Product 3" 
+            class="product-image img-fluid">
+          <h3 class="text-center mt-2">Health Tips</h3>
+          <button class="btn btn-success w-70 rem" routerLink="healthtips">
+            <i class="fas fa-heartbeat"></i> View
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="safe-standards">
+    <div class="heading-container">
+      <div class="heading hover-effect mb-5">Our Best Sellers Here</div>
+    </div>
+    <!-- Row container for Best Sellers -->
+    <div class="row justify-content-center">
+      <!-- Loop through bestSellers and display product cards -->
+      <div *ngFor="let product of bestSellers" class="col-md-4 col-sm-6 col-xs-12 mb-4 animate__animated animate__fadeInUp">
+        <div class="card glass-effect shadow-lg" [ngClass]="{'out-of-stock': product.StockQuantity <= 0}">
+          <div class="product-img-container">
+            <img *ngIf="product.ProductImage" [src]="'data:image/jpeg;base64,' + product.ProductImage" class="card-img-top" alt="image not available" />
+            <span *ngIf="!product.ProductImage" class="no-image-text">No Image</span>
+          </div>
+
+          <div class="card-body">
+            <h5 class="card-title text-center">{{ product.ProductName }}</h5>
+            <p class="card-text">{{ product.Description }}</p>
+            <p class="price text-center"><strong>Price:</strong> {{ product.Price | currency: 'INR' }}</p>
+
+            <div class="button-group d-flex justify-content-between">
+              <button class="btn btn-primary btn-lg animate__animated animate__pulse" (click)="onButtonClick(product)" [disabled]="product.StockQuantity <= 0">
+                Add to Cart
+              </button>
+              <button class="btn btn-success btn-lg animate__animated animate__pulse" (click)="buyNow(product)" [disabled]="product.StockQuantity <= 0">
+                Buy Now
+              </button>
+            </div>
+
+            <div *ngIf="product.StockQuantity <= 0" class="out-of-stock-label">
+              <p class="text-center text-dark">Out of Stock</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="safe-standards">
+    <h2 class="title">Super Safe Standards</h2>
+    <div class="standards-container">
+      <div class="standard-item">
+        <img src="https://images.mamaearth.in/wysiwyg/dermatology-tested-100x100.png" alt="Dermatologically Tested" />
+        <h3>Dermatologically Tested</h3>
+        <p>Each product is tested clinically to ensure it’s non-allergic and safe for sensitive skin.</p>
+      </div>
+      <div class="standard-item">
+        <img src="https://images.mamaearth.in/wysiwyg/fda-100x100.jpg" alt="FDA Approved" />
+        <h3>FDA Approved</h3>
+        <p>Mamaearth products are FDA-approved, ensuring they meet stringent safety standards.</p>
+      </div>
+      <div class="standard-item">
+        <img src="https://images.mamaearth.in/wysiwyg/msafe-100x100.jpg" alt="Made Safe Certified" />
+        <h3>Made Safe Certified</h3>
+        <p>Certified to contain only safe, non-toxic ingredients for you and your family.</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="slider2" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="https://images.pexels.com/photos/7818029/pexels-photo-7818029.png" height="600px" class="d-block w-100" alt="Offer Image">
+      </div>
+    </div>
+  </div>
+
+  <div class="shipping-info-container">
+    <div class="info-item">
+      <img src="https://images.mamaearth.in/wysiwyg/mobile-truck.png" alt="Free Shipping" />
+      <h3>Free Shipping</h3>
+      <p>Orders Above ₹399</p>
+    </div>
+    <div class="info-item">
+      <img src="https://images.mamaearth.in/wysiwyg/Group_81512x.png" alt="COD Available" />
+      <h3>COD Available</h3>
+      <p>₹40 Per Order</p>
+    </div>
+    <div class="info-item contact">
+      <h3>Have Queries or Concerns?</h3>
+      <a
+    href="https://wa.me/7905917124?text=Hello%20I%20would%20like%20to%20ask%20some%20queries%20regarding%20your%20site520Nature%20Hub."
+    target="_blank"
+    class="whatsapp-link contact-button"
+  > 
+     Contact Us</a>
+    </div>
+  </div>
+
+  <script>
+    AOS.init();  // Ensure AOS is initialized
+  </script>
+
+  <!-- Show the toaster-style popup if the user is not authenticated or if it's time to remind again -->
+  <div *ngIf="!isLoggedIn">
+    <app-popup *ngIf="showPopup" (closePopup)="closePopup()" (remindLater)="remindLater()"></app-popup>
+  </div>
+</div>

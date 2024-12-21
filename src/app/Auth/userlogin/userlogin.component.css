@@ -1,0 +1,104 @@
+
+
+/* Center the form vertically and horizontally */
+.container {
+  height: 100vh;
+}
+
+/* Card design */
+.login-card {
+  background-color: #fff;
+  width: 100%;
+  max-width: 600px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  animation: slideIn 0.5s ease-out;
+}
+.error-message{
+  color: rgb(197, 11, 11);
+}
+/* Add animation for the card */
+@keyframes slideIn {
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Heading styling */
+h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #0f8632;
+}
+
+/* Styling form labels and inputs */
+.form-group label {
+  font-size: 23px;
+  font-weight: 500;
+  color: #333;
+}
+
+.form-control {
+  height: 50px;
+  font-size: 20px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #0072ff;
+  box-shadow: 0 0 10px rgba(4, 40, 85, 0.3);
+}
+
+/* Button styling */
+.btn-success {
+  background-color: #0f6e24;
+  border: none;
+  align-items: center;
+  position: relative;
+  border-radius: 5px;
+  font-size: 20px;
+  display: block; /* Ensures block layout for centering */
+  margin: 20px auto; /* Centers the button horizontally */
+  padding: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-success:hover {
+  background-color: #0a9634;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .login-card {
+    width: 80%;
+    padding: 20px;
+  }
+  h2 {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 576px) {
+  .login-card {
+    width: 90%;
+    padding: 15px;
+  }
+  h2 {
+    font-size: 20px;
+  }
+}
+
+  
+  .error-message {
+    color: red;
+    text-align: center;
+  }
+  

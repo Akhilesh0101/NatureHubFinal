@@ -1,0 +1,179 @@
+<div class="container mt-4 animate__animated animate__fadeIn">
+  <h2 class="text-center mb-4">{{ isEditMode ? 'Edit Remedy' : 'Add New Remedy' }}</h2>
+
+  <!-- Remedy Form -->
+  <form (ngSubmit)="onSubmit()" class="form-card shadow-lg p-4 rounded" #remedyForm="ngForm">
+    
+    <!-- Remedy Name -->
+    <div class="form-group mb-3">
+      <label for="remedyName" class="form-label">Remedy Name</label>
+      <input
+        type="text"
+        id="remedyName"
+        class="form-control"
+        [(ngModel)]="remedy.RemedyName"
+        name="remedyName"
+        required
+        minlength="5"
+        maxlength="50"
+        pattern="^[a-zA-Z ]+$"
+        #remedyName="ngModel"
+        placeholder="Enter remedy name"
+      />
+      <div *ngIf="remedyName.invalid && remedyName.touched" class="text-danger">
+        <small *ngIf="remedyName.errors?.['required']">Remedy Name is required.</small>
+        <small *ngIf="remedyName.errors?.['minlength']">Remedy Name must be at least 5 characters long.</small>
+        <small *ngIf="remedyName.errors?.['pattern']">Remedy Name can only contain alphabets and spaces.</small>
+      </div>
+    </div>
+
+    <!-- Description -->
+    <div class="form-group mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea
+        id="description"
+        class="form-control"
+        [(ngModel)]="remedy.Description"
+        name="description"
+        required
+        minlength="10"
+        pattern="^[a-zA-Z ]+$"
+        rows="4"
+        #description="ngModel"
+        placeholder="Enter remedy description"
+      ></textarea>
+      <div *ngIf="description.invalid && description.touched" class="text-danger">
+        <small *ngIf="description.errors?.['required']">Description is required.</small>
+        <small *ngIf="description.errors?.['minlength']">Description must be at least 10 characters long.</small>
+        <small *ngIf="description.errors?.['pattern']">Description can only contain alphabets and spaces.</small>
+      </div>
+    </div>
+
+    <!-- Benefits -->
+    <div class="form-group mb-3">
+      <label for="benefits" class="form-label">Benefits</label>
+      <textarea
+        id="benefits"
+        class="form-control"
+        [(ngModel)]="remedy.Benefits"
+        name="benefits"
+        minlength="10"
+        rows="3"
+        #benefits="ngModel"
+        placeholder="Enter benefits"
+      ></textarea>
+      <div *ngIf="benefits.invalid && benefits.touched" class="text-danger">
+        <small *ngIf="benefits.errors?.['required']">Benefits are required.</small>
+        <small *ngIf="benefits.errors?.['minlength']">Benefits must be at least 10 characters long.</small>
+      </div>
+    </div>
+
+    <!-- Preparation Method -->
+    <div class="form-group mb-3">
+      <label for="preparationMethod" class="form-label">Preparation Method</label>
+      <textarea
+        id="preparationMethod"
+        class="form-control"
+        [(ngModel)]="remedy.PreparationMethod"
+        name="preparationMethod"
+        rows="3"
+        minlength="10"
+
+        #preparationMethod="ngModel"
+        placeholder="Describe the preparation method"
+      ></textarea>
+      <div *ngIf="preparationMethod.invalid && preparationMethod.touched" class="text-danger">
+        <small *ngIf="preparationMethod.errors?.['required']">Preparation method is required.</small>
+        <small *ngIf="preparationMethod.errors?.['minlength']">Preparation method must be at least 10 characters long.</small>
+
+      </div>
+    </div>
+
+    <!-- Usage Instructions -->
+    <div class="form-group mb-3">
+      <label for="usageInstructions" class="form-label">Usage Instructions</label>
+      <textarea
+        id="usageInstructions"
+        class="form-control"
+        [(ngModel)]="remedy.UsageInstructions"
+        name="usageInstructions"
+        minlength="10"
+        rows="3"
+        #usageInstructions="ngModel"
+        placeholder="Provide usage instructions"
+      ></textarea>
+      <div *ngIf="usageInstructions.invalid && usageInstructions.touched" class="text-danger">
+        <small *ngIf="usageInstructions.errors?.['required']">Usage instructions are required.</small>
+        <small *ngIf="usageInstructions.errors?.['minlength']">Usage instructions must be at least 10 characters long.</small>
+
+      </div>
+    </div>
+
+    <!-- Category ID -->
+    <div class="form-group mb-3">
+      <label for="categoryId" class="form-label">Category ID</label>
+      <input
+        type="number"
+        id="categoryId"
+        class="form-control"
+        [(ngModel)]="remedy.CategoryId"
+        name="categoryId"
+        required
+        min="1"
+        max="5"
+        #categoryId="ngModel"
+        placeholder="Enter category ID"
+        (focus)="showCategoryInfo = true"
+        (blur)="showCategoryInfo = false"
+      />
+      <!-- Helper Text for Categories -->
+      <div class="text-secondary small mt-1" *ngIf="showCategoryInfo">
+        Enter a Category ID:
+        <ul class="list-unstyled ms-3">
+          <li><strong>1</strong>: Hair</li>
+          <li><strong>2</strong>: Skin</li>
+          <li><strong>3</strong>: Body</li>
+          <li><strong>4</strong>: Digestion</li>
+          <li><strong>5</strong>: Immunity</li>
+        </ul>
+      </div>
+      <!-- Error Messages -->
+      <div class="text-danger mt-1" *ngIf="categoryId.touched && categoryId.invalid">
+        <small *ngIf="categoryId.errors?.['required']">Category ID is required.</small>
+        <small *ngIf="categoryId.errors?.['min'] || categoryId.errors?.['max']">
+          Category ID must be between 1 and 5.
+        </small>
+      </div>
+    </div>
+    
+
+    <!-- Remedy Image Upload -->
+    <div class="form-group mb-3">
+      <label for="image" class="form-label">Upload Image</label>
+      <input
+        type="file"
+        id="image"
+        class="form-control"
+        required
+        (change)="onFileSelect($event)"
+      />
+      <div *ngIf="!remedy.Remediesimg && remedyForm.touched" class="text-danger">
+        Image is required.
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="text-center">
+      <button
+        type="submit"
+        class="btn btn-primary px-4 py-2"
+        [disabled]="remedyForm.invalid">
+        {{ isEditMode ? 'Update Remedy' : 'Add Remedy' }}
+      </button>
+    </div>
+  </form>
+  
+  <div class="text-center mt-3">
+    <a href="admin-panel" class="text-decoration-none fw-bold">Go back to Admin panel</a>
+  </div>
+</div>

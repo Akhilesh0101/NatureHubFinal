@@ -1,0 +1,145 @@
+/* Navbar styles */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    flex-wrap: wrap;
+    height: 100px;
+   
+    z-index: 1; /* Ensures navbar content appears on top */
+    
+  }
+  
+  /* The glass effect is only applied to the background of the navbar */
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    padding: 10px;
+  }
+  
+  /* Left side of the navbar (NatureHub title) */
+  .navbar-left {
+    display: flex;
+    color: rgb(13, 69, 158);
+    align-items: center;
+    flex-grow: 1; /* This will make the left part take up extra space */
+  }
+  
+  /* The right side of the navbar (Login/Signup button) */
+  .navbar-right {
+    display: flex;
+    align-items: center;
+    font-size: 28px; /* Adjust the size of the text */
+    font-weight: bold; /* Makes the text bolder */
+    justify-content: flex-end;
+    text-transform: capitalize; /* Ensures proper casing */
+    color: rgb(13, 69, 158); /* Matches the navbar theme */
+    text-decoration: none; /* Removes underline */
+    transition: all 0.3s ease; /* Adds smooth effect on hover */
+    width: auto;
+  }
+  
+  /* NatureHub title styling */
+  .navbar-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-left: 15px;
+  }
+
+  .navbar-heading {
+    margin-left: 20px;
+    font-size: 18px; /* Adjust the size of the text */
+    font-weight: bold; /* Makes the text bolder */
+    text-transform: capitalize; /* Ensures proper casing */
+    color: rgb(13, 69, 158); /* Matches the navbar theme */
+    text-decoration: none; /* Removes underline */
+    transition: all 0.3s ease; /* Adds smooth effect on hover */
+  }
+  
+  /* Animated Login/Signup Button */
+  .animated-btn {
+    background-color: #ff4081;
+    color: white;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+    border-radius: 20px;
+  }
+  
+  .animated-btn:hover {
+    background-color: #166926;
+    color: white;
+    transform: scale(1.05);
+  }
+  
+  /* Navbar links - Clear of blur effect */
+  .navbar-links {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+    font-size: 48px; /* Adjust the size of the text */
+    font-weight: bold; /* Makes the text bolder */
+    color: rgb(13, 69, 158);
+    z-index: 2; /* Ensures links are above the blurred background */
+  }
+  
+  .navbar-links a {
+    margin: 0 15px;
+    text-transform: uppercase;
+    color: rgb(13, 69, 158);
+  }
+  
+  .navbar-links a:hover {
+    font-size:medium;
+  }
+  .navbar-links a:visited{
+    color:  rgb(13, 65, 84);
+  }
+  
+  /* Responsive Design: Adjustments for small screens */
+  @media (max-width: 768px) {
+    .navbar {
+        background-color: rgb(195, 218, 155);
+      flex-direction: column; /* Ensure horizontal layout even on small screens */
+      justify-content: space-between; /* Keep left-aligned title and right-aligned button */
+      align-items: flex-start;
+    }
+  
+    .navbar-left {
+      margin-left: 0; /* Ensure left-alignment for "NatureHub" */
+      color: rgb(34, 83, 34);
+    }
+  
+    .navbar-right {
+      margin-right: 0; /* Ensure right-alignment for button */
+      margin-left: 0;
+      align-self: flex-start;
+      color: rgb(22, 86, 22);
+    }
+    .navbar-right button{
+      display: block;
+      width: 70px;
+      font-size: x-small;
+      padding: 0%;
+    }
+    .navbar-right i{
+      
+    }
+  
+    .navbar-links {
+      
+      padding: 10px 0;
+    }
+  
+    .navbar-links a {
+      margin: 5px 0;
+      color: rgb(26, 95, 26);
+    }
+    .navbar-right{
+      margin: auto;
+      
+    }
+  }
+  

@@ -1,0 +1,12 @@
+<!-- Popup Modal (Toaster Style) -->
+<div class="popup-overlay" *ngIf="showPopup">
+  <div class="popup-content animate__animated animate__fadeInUp">
+    <h2>Welcome to NatureHub</h2>
+    <p>Please, join us for uninterrupted services</p>
+    <div class="popup-buttons">
+      <button class="close-btn" (click)="onClose()">Close</button>
+      <button class="remind-btn" (click)="remindMeLater()">Remind Me Later</button>
+      <button class="remind-btn" routerLink="/signup" style="background-color: rgb(20, 20, 104);">Click to Signup</button>
+    </div>
+  </div>
+</div>

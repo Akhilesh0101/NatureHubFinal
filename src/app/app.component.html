@@ -1,0 +1,9 @@
+
+<!-- <app-error-notification></app-error-notification>  Include the error notification component -->
+
+<div>
+<app-nav *ngIf="showNav"></app-nav>
+<!-- <app-slider *ngIf="showNav"></app-slider><span class="mb-2"></span> -->
+<main><router-outlet></router-outlet></main>
+ <app-footer *ngIf="showNav"></app-footer> 
+</div>

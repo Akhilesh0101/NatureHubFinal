@@ -1,0 +1,31 @@
+<mat-toolbar class="navbar glass-effect shadow" style="border-radius: 0%;">
+    <!-- Left side of the navbar (NatureHub title) -->
+    <div class="navbar-left">
+      <h2 mat-subheader class="navbar-title" style="font-size: 24px; font-weight: bold; margin-bottom: 10px; text-decoration: none;"><i class="bi bi-x-diamond-fill"></i>NatureHub</h2>
+      <div class="navbar-headings ">
+        <a mat-button class="navbar-heading" routerLink="product">Product</a>
+        <a mat-button class="navbar-heading" routerLink="remedies">Remedies</a>
+        <a mat-button class="navbar-heading" routerLink="healthtips">Healthtips</a>
+      </div>
+    </div>
+  
+    <!-- Right side: Login/Signup button -->
+    <div class="navbar-right d-flex justify-content-between align-items-center">
+      <button *ngIf="!isLoggedIn" mat-raised-button class="animated-btn" routerLink="signup">Login / Signup</button>
+      
+      <a routerLink="dashboard"  *ngIf="isLoggedIn"><i class="bi bi-person-circle text-dark" style="margin-left:20px; margin-right: 20px;"></i></a>
+      <a *ngIf="isLoggedIn" routerLink="cart"><i class="bi bi-cart-fill text-dark" style="margin-right: 20px;"></i></a>
+      <a *ngIf="isLoggedIn" routerLink="bookmark"><i class="bi bi-bookmark " style="margin-right: 20px;"></i></a>
+      <button *ngIf="isLoggedIn" mat-raised-button class="animated-btn" (click)="logout()">Logout</button>
+    </div>
+  </mat-toolbar>
+  <!-- Navbar Links -->
+  <div class="navbar-links">
+    <a mat-button routerLink="/">Home</a>
+    <a mat-button routerLink="skin">Skin</a>
+    <a mat-button routerLink="body">Body</a>
+    <a mat-button routerLink="digestion">Digestion</a>
+    <a mat-button routerLink="hair">Hair</a>
+    <a mat-button routerLink="immunity">Immunity</a>
+  </div>
+  

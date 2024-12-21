@@ -1,0 +1,110 @@
+/* Reset default styling */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+  width:100%;
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  flex-direction: column;
+  padding: 20px;
+  overflow-x: hidden;
+}
+
+/* Container for the cards with responsive grid */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;  /* Space between cards */  
+  width: 95%;
+  
+  margin: 20px 0 20px 35px;
+}
+
+/* Responsive: For smaller screens, 1 card per row */
+@media (max-width: 1024px) {
+  .card-container {
+    grid-template-columns: repeat(2, 1fr); /* 2 cards per row on medium screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .card-container {
+    grid-template-columns: 1fr; /* 1 card per row on smaller screens */
+  }
+}
+
+/* Card styling */
+.card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect for the cards */
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Card image styling */
+.card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+/* Card content */
+.card-content {
+  padding: 15px;
+}
+
+.card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.card p {
+  font-size: 1rem;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+
+/* Optional: Footer for the page */
+footer {
+  margin-top: 40px;
+  text-align: center;
+  color: #777;
+  font-size: 0.9rem;
+}
+/* Bookmark button styling */
+.bookmark-icon {
+border: none;
+background: none;
+cursor: pointer;
+}
+
+.bookmark-icon .active-bookmark {
+color: #007bff;
+font-size: 2rem;
+}
+
+.bookmark-icon:hover {
+color: #0c2e52;
+background-color: none;
+}

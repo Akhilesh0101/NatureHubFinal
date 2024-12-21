@@ -1,0 +1,174 @@
+<div class="container mt-4 animate__animated animate__fadeIn">
+  <h2 class="text-center mb-4">{{ isEditMode ? 'Edit Product' : 'Add New Product' }}</h2>
+
+  <!-- Product Form -->
+  <form #productForm="ngForm" (ngSubmit)="onSubmit()" class="form-card shadow-lg p-4 rounded">
+
+    <!-- Product Name -->
+    <div class="form-group mb-3">
+      <label for="productName" class="form-label">Product Name</label>
+      <input
+        type="text"
+        id="productName"
+        class="form-control"
+        [(ngModel)]="product.ProductName"
+        name="productName"
+        required
+        minlength="5"
+        maxlength="30" 
+        pattern="^[a-zA-Z]+[a-zA-Z ]+$"
+        #productName="ngModel"
+        placeholder="Enter product name"
+      />
+      <!-- Error Messages -->
+      <div class="text-danger" *ngIf="productName.touched && productName.invalid">
+        <small *ngIf="productName.errors?.['required']">Product Name is required.</small>
+        <small *ngIf="productName.errors?.['minlength']">Product Name must be at least 5 characters long.</small>
+        <small *ngIf="productName.errors?.['maxlength']">Product Name cannot exceed 30 characters.</small>
+        <small *ngIf="productName.errors?.['pattern']">Product Name can only contain letters and spaces.</small>
+      </div>
+    </div>
+    
+
+    <!-- Price -->
+    <div class="form-group mb-3">
+      <label for="price" class="form-label">Price</label>
+      <input
+        type="number"
+        id="price"
+        class="form-control"
+        [(ngModel)]="product.Price"
+        name="price"
+        required
+        min="0" 
+        max="999999999"
+        #price="ngModel"
+        placeholder="Enter price"
+      />
+      <!-- Error Messages -->
+      <div class="text-danger" *ngIf="price.touched && price.invalid">
+        <small *ngIf="price.errors?.['required']">Price is required.</small>
+        <small *ngIf="price.errors?.['min']">Price cannot be negative.</small>
+        <small *ngIf="price.errors?.['max']">Price cannot exceed 9 digits.</small>
+      </div>
+    </div>
+    
+
+    <!-- Description -->
+    <div class="form-group mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea
+        id="description"
+        class="form-control"
+        [(ngModel)]="product.Description"
+        name="description"
+        minlength="10"
+        rows="4"
+        required
+        #description="ngModel"
+        placeholder="Enter product description"></textarea>
+      <!-- Error Messages -->
+      <div class="text-danger" *ngIf="description.touched && description.invalid">
+        <small *ngIf="description.errors?.['required']">Description is required.</small>
+        <small *ngIf="description.errors?.['minlength']">Description must be at least 10 characters long.</small>
+
+      </div>
+    </div>
+
+    <!-- Stock Quantity -->
+    <div class="form-group mb-3">
+      <label for="stockQuantity" class="form-label">Stock Quantity</label>
+      <input
+        type="number"
+        id="stockQuantity"
+        class="form-control"
+        [(ngModel)]="product.StockQuantity"
+        name="stockQuantity"
+        required
+        min="0"
+        max="999999999"
+        #stockQuantity="ngModel"
+        placeholder="Enter stock quantity"
+        [pattern]="'^[0-9]*$'"
+      />
+      <!-- Error Messages -->
+      <div class="text-danger" *ngIf="stockQuantity.touched && stockQuantity.invalid">
+        <small *ngIf="stockQuantity.errors?.['required']">Stock Quantity is required.</small>
+        <small *ngIf="stockQuantity.errors?.['min']">Stock Quantity cannot be negative.</small>
+        <small *ngIf="stockQuantity.errors?.['max']">Stock Quantity cannot exceed 9 digits.</small>
+        <small *ngIf="stockQuantity.errors?.['pattern']">Stock Quantity must be a whole number (no decimals).</small>
+      </div>
+    </div>
+    
+    
+
+    <!-- Category ID -->
+    <div class="form-group mb-3">
+      <label for="categoryId" class="form-label">Category ID</label>
+      <input
+        type="number"
+        id="categoryId"
+        class="form-control"
+        [(ngModel)]="product.CategoryId"
+        name="categoryId"
+        required
+        min="1"
+        max="5"
+        #categoryId="ngModel"
+        placeholder="Enter category ID"
+        (focus)="showCategoryInfo = true"
+        (blur)="showCategoryInfo = false"
+      />
+      <!-- Helper Text for Categories -->
+      <div class="text-secondary small mt-1" *ngIf="showCategoryInfo">
+        Enter a Category ID:
+        <ul class="list-unstyled ms-3">
+          <li><strong>1</strong>: Hair</li>
+          <li><strong>2</strong>: Skin</li>
+          <li><strong>3</strong>: Body</li>
+          <li><strong>4</strong>: Digestion</li>
+          <li><strong>5</strong>: Immunity</li>
+        </ul>
+      </div>
+      <!-- Error Messages -->
+      <div class="text-danger mt-1" *ngIf="categoryId.touched && categoryId.invalid">
+        <small *ngIf="categoryId.errors?.['required']">Category ID is required.</small>
+        <small *ngIf="categoryId.errors?.['min'] || categoryId.errors?.['max']">
+          Category ID must be between 1 and 5.
+        </small>
+      </div>
+    </div>
+    
+
+    <!-- Product Image Upload -->
+    <div class="form-group mb-3">
+      <label for="productImage" class="form-label">Product Image</label>
+      <input
+        type="file"
+        id="productImage"
+        required
+        class="form-control"
+        (change)="onFileSelect($event)"
+      />
+      <div class="text-danger" *ngIf="!product.ProductImage && productForm.touched">
+        Product Image is required.
+        
+    </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="text-center">
+      <button
+        type="submit"
+        class="btn btn-primary px-4 py-2"
+        [disabled]="productForm.invalid">
+        {{ isEditMode ? 'Update Product' : 'Add Product' }}
+      </button>
+    </div>
+  </form>
+
+  <!-- Back to Admin Panel -->
+  <div class="text-center mt-3">
+    <a href="admin-panel" class="text-decoration-none fw-bold">Go back to Admin panel</a>
+  </div>
+</div>

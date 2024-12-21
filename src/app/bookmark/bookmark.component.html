@@ -1,0 +1,27 @@
+<div class="bookmark-container">
+    <h2 class="title">Bookmarked Remedies</h2>
+    <div class="row">
+      <div class="text-danger text-center font-large" *ngIf="bookmarks.length === 0">
+        <h2>No bookmarks yet <i class="fas fa-triangle-exclamation"></i></h2>
+      </div>
+      <div class="category-container">
+        <div class="category" *ngFor="let card of bookmarks">
+          <div class="card">
+            <img *ngIf="card.Remediesimg" 
+            [src]="'data:image/jpeg;base64,' + card.Remediesimg" 
+            width="400"height="200" alt="image not available" />
+       <span *ngIf="!card.Remediesimg">No Image</span>              
+            <div class="card-content">
+              <h4>{{ card.RemedyName }}</h4>
+              <p><strong>Description:</strong> {{ card.Description }}</p>
+              <p><strong>Benefits:</strong> {{ card.Benefits }}</p>
+              <p><strong>Preparation:</strong> {{ card.PreparationMethod }}</p>
+              <p><strong>Usage:</strong> {{ card.UsageInstructions }}</p>
+              <button class="btn-remove" (click)="removeBookmark(card)">Remove</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

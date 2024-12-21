@@ -1,0 +1,29 @@
+<div class="container">
+  <h1 class="text-center">{{ title }}</h1>
+  <div class="category-buttons mb-4" style="align-items: flex-start;">
+    <!-- Category filter buttons -->
+    <button class="btn btn-primary mr-2" (click)="filterByCategory(0)">All</button>
+    <button class="btn btn-primary mr-2" (click)="filterByCategory(1)">Hair</button>
+    <button class="btn btn-primary mr-2" (click)="filterByCategory(2)">Skin</button>
+    <button class="btn btn-primary mr-2" (click)="filterByCategory(3)">Body</button>
+    <button class="btn btn-primary mr-2" (click)="filterByCategory(4)">Digestion</button>
+    <button class="btn btn-primary" (click)="filterByCategory(5)">Immunity</button>
+  </div>
+
+  <!-- Display health tips -->
+  <div class="row">
+    <div class="col-md-4 mb-4" *ngFor="let tip of filteredHealthTips">
+      <div class="card hover-effect">
+        <!-- Display image if it exists -->
+        <img *ngIf="tip.HealthTipsimg" 
+        [src]="'data:image/jpeg;base64,' + tip.HealthTipsimg" 
+        width="400"height="200" alt="image not available" />
+   <span *ngIf="!tip.HealthTipsimg">No Image</span>    <div class="card-content">
+        <div class="card-body">
+          <h3 class="card-title">{{ tip.TipTitle }}</h3>
+          <p class="card-text">{{ tip.TipDescription }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

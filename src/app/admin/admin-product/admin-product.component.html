@@ -1,0 +1,47 @@
+<div class="container mt-4">
+  <h2 class="text-center mb-4 animate__animated animate__fadeInDown">Product Management</h2>
+
+  <!-- Add Product Button -->
+  <div class="text-end mb-3">
+    <button class="btn btn-success animate__animated animate__fadeIn" (click)="onAddProduct()">Add Product</button>
+  </div>
+
+  <!-- Product Table -->
+  <div class="table-responsive shadow-lg rounded animate__animated animate__fadeInUp">
+    <table class="table table-hover table-stripped text-center">
+      <thead class="table-dark">
+        <tr>
+          <th>S.No</th>
+          <th>Product Name</th>
+          <th>Product Image</th>
+          <th>Product Description</th>
+          <th>Price</th>
+          <th>StockQuantity</th>
+          <th>Category Id</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ product.ProductName }}</td>
+          <td>
+            <img *ngIf="product.ProductImage" 
+                 [src]="'data:image/jpeg;base64,' + product.ProductImage" 
+                 class="img-thumbnail" width="100" height="100" 
+                 alt="Image not available" />
+            <span *ngIf="!product.ProductImage">No Image</span>
+          </td>
+          <td>{{ product.Description }}</td>
+          <td><span>₹</span>{{ product.Price }}</td>
+          <td>{{product.StockQuantity}}</td>
+          <td>{{ product.CategoryId }}</td>
+          <td>
+            <button class="btn btn-primary btn-sm me-2" (click)="onEditProduct(product)">Edit</button>
+            <button class="btn btn-danger btn-sm " (click)="onDeleteProduct(product.ProductId)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

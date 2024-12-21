@@ -1,0 +1,20 @@
+<div class="card-container">
+  <div class="card" *ngFor="let card of cards">
+ <img *ngIf="card.Remediesimg" 
+        [src]="'data:image/jpeg;base64,' + card.Remediesimg" 
+        width="400"height="200" alt="image not available" />
+   <span *ngIf="!card.Remediesimg">No Image</span>    <div class="card-content">
+      <h3>{{ card.RemedyName }}</h3>
+      <p><strong>Description:</strong> {{ card.Description }}</p>
+      <p><strong>Benefits:</strong> {{ card.Benefits }}</p>
+      <p><strong>Preparation:</strong> {{ card.PreparationMethod }}</p>
+      <p><strong>Usage:</strong> {{ card.UsageInstructions }}</p>
+      <!-- <p><strong>Category:</strong> {{ card.category }}</p> -->
+      <div (click)="bookmarkCard(card)" class="text-center">
+        <button class="btn btn-outline-primary mt-auto bookmark-icon">
+          <i class="bi bi-bookmarks"></i> Bookmark
+        </button> 
+      </div>
+    </div>
+  </div>
+</div>

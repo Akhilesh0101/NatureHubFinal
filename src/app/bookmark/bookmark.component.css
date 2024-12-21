@@ -1,0 +1,113 @@
+/* Bookmark Container */
+.bookmark-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Title Styling */
+  .title {
+    font-size: 2em;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  /* Row Styling */
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  /* Category Container Styling */
+  .category-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  
+  /* Individual Category (Card) */
+  .category {
+    width: calc(33.33% - 20px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Card Image */
+  .remedy-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+  
+  /* Card Content Styling */
+  .card-content {
+    padding: 15px;
+  }
+  
+  .card-content h4 {
+    font-size: 1.25em;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .card-content p {
+    font-size: 1em;
+    color: #666;
+  }
+  
+  .card-content button {
+    background-color: #e63946;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .card-content button:hover {
+    background-color: #d62828;
+  }
+  
+  /* No Bookmarks Message */
+  .text-danger {
+    font-size: 1.5em;
+    color: #e63946;
+    font-weight: bold;
+  }
+  
+  /* Media Queries for Responsiveness */
+  @media (max-width: 1200px) {
+    .category {
+      width: calc(50% - 20px); /* 2 cards per row */
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .category {
+      width: calc(100% - 20px); /* 1 card per row */
+    }
+  }
+  

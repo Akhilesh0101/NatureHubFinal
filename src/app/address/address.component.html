@@ -1,0 +1,102 @@
+<div class="container mt-5 mb-5">
+  <h2>Enter Address</h2>
+
+  <!-- Address Form -->
+  <form (ngSubmit)="saveAddress()" #addressForm="ngForm">
+    
+    <label for="street">Street:</label>
+    <input
+      type="text"
+      id="street"
+      [(ngModel)]="address.Street"
+      name="street"
+      required
+      pattern="^[a-zA-Z0-9\s]+$"  
+      #street="ngModel"
+      />
+    <div *ngIf="street.invalid && street.touched" class="text-danger">
+      Street must contain only letters, numbers, and spaces.
+    </div>
+
+    <label for="phone">Phone Number:</label>
+<input
+  type="text"
+  id="phone"
+  [(ngModel)]="address.PhoneNumber"
+  name="phone"
+  required
+  pattern="^(?!([0-9])\1{9})\d{10}$"
+  #phone="ngModel"
+/>
+<div *ngIf="phone.invalid && phone.touched" class="text-danger">
+  <div *ngIf="phone.errors?.['required']">Phone number is required.</div>
+  <div *ngIf="phone.errors?.['pattern']">
+    Phone number must be 10 digits and not all the same digit.
+  </div>
+</div>
+
+
+    
+
+    <label for="city">City:</label>
+    <input
+      type="text"
+      id="city"
+      [(ngModel)]="address.City"
+      name="city"
+      required
+      pattern="^[a-zA-Z\s]+$"
+      #city="ngModel"
+      />
+    <div *ngIf="city.invalid && city.touched" class="text-danger">
+      City must contain only letters.
+    </div>
+
+    <label for="state">State:</label>
+    <input
+      type="text"
+      id="state"
+      [(ngModel)]="address.State"
+      name="state"
+      required
+      pattern="^[a-zA-Z\s]+$" 
+      #state="ngModel"
+      />
+    <div *ngIf="state.invalid && state.touched" class="text-danger">
+      State must contain only letters.
+    </div>
+
+    <label for="country">Country:</label>
+    <input
+      type="text"
+      id="country"
+      [(ngModel)]="address.Country"
+      name="country"
+      required
+      pattern="^[a-zA-Z\s]+$" 
+      #country="ngModel"
+      />
+    <div *ngIf="country.invalid && country.touched" class="text-danger">
+      Country must contain only letters.
+    </div>
+
+    <label for="zipCode">Zip Code:</label>
+    <input
+      type="text"
+      id="zipCode"
+      [(ngModel)]="address.ZipCode"
+      name="zipCode"
+      required
+      pattern="^\d{6}$" 
+      #zipCode="ngModel"
+      />
+    <div *ngIf="zipCode.invalid && zipCode.touched" class="text-danger">
+      Zip Code must be exactly 6 digits.
+    </div>
+    <div class="d-flex justify-content-between mt-4">
+      <button type="submit" [disabled]="addressForm.invalid">{{ isEditMode ? 'Update Address' : 'Save Address' }}</button>
+    <button class=" btn btn-primary" type="button" (click)="resetAddressForm()">Reset</button>
+    </div>
+    
+  </form>
+</div>

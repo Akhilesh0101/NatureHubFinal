@@ -1,0 +1,52 @@
+<div class="container mt-4 animate__animated animate__fadeIn">
+  <h2 class="text-center mb-4">Remedy Management</h2>
+
+  <!-- Add Remedy Button -->
+  <div class="text-end mb-3">
+    <button class="btn btn-success" (click)="onAddRemedy()">Add Remedy</button>
+  </div>
+
+  <!-- Responsive Table -->
+  <div class="table-responsive shadow-lg rounded">
+    <table class="table table-hover table-striped text-center">
+      <thead class="table-dark">
+        <tr>
+          <th>S.No</th>
+          <th>Remedy Name</th>
+          <th>Remedy Image</th>
+          <th>Description</th>
+          <th>Benefits</th>
+          <th>Preparation Method</th>
+          <th>Usage Instructions</th>
+          <th>Category Id</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let remedy of remedies; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ remedy.RemedyName }}</td>
+
+          <!-- Image Display -->
+          <td>
+            <img *ngIf="remedy.Remediesimg" 
+                 [src]="'data:image/jpeg;base64,' + remedy.Remediesimg" 
+                 class="remedy-image"
+                 alt="Remedy Image" />
+            <span *ngIf="!remedy.Remediesimg">No Image</span>
+          </td>
+
+          <td>{{ remedy.Description }}</td>
+          <td>{{ remedy.Benefits }}</td>
+          <td>{{ remedy.PreparationMethod }}</td>
+          <td>{{ remedy.UsageInstructions }}</td>
+          <td>{{ remedy.CategoryId }}</td>
+          <td class="d-flex ">
+            <button class="btn btn-primary btn-sm me-2 mt-2 mb-5" (click)="onEditRemedy(remedy)"><i class="bi bi-pen-fill"></i></button>
+            <button class="btn btn-danger btn-sm mb-5 mt-2 " (click)="onDeleteRemedy(remedy.RemedyId)"><i class="bi bi-trash3-fill"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

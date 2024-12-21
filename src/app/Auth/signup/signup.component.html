@@ -1,0 +1,92 @@
+<body style=" background:rgb(0,0,0,0.1);">
+
+<div class="container d-flex justify-content-center align-items-center vh-100">
+
+<div class="signup-container">
+  <h2>Sign Up</h2>
+  <form [formGroup]="signupForm" (ngSubmit)="signup()">
+    <!-- Username -->
+    <div class="form-group">
+      <label for="userName">Username</label>
+      <input
+        id="userName"
+        formControlName="userName"
+        type="text"
+        placeholder="Enter your username"
+        class="form-control"
+        required
+      />
+      <div *ngIf="signupForm.get('userName')?.invalid && signupForm.get('userName')?.touched" class="error">
+        Username must be 4-20 characters long and contain only alphabets.      </div>
+    </div>
+
+    <!-- Email -->
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        id="email"
+        formControlName="email"
+        type="email"
+        placeholder="Enter your email"
+        class="form-control"
+        required
+      />
+      <div *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched" class="error">
+        Please enter a valid email address.
+      </div>
+    </div>
+
+    <!-- Password -->
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input
+        id="password"
+        formControlName="password"
+        type="password"
+        placeholder="Enter your password"
+        class="form-control"
+        required
+      />
+      <div *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched" class="error">
+        'Password must be at least 8 characters long and include at least 1 uppercase letter
+        , 1 lowercase letter, 1 special character and 1 number.';
+        
+      </div>
+    </div>
+
+    <!-- Confirm Password -->
+    <div class="form-group">
+      <label for="confirmPassword">Confirm Password</label>
+      <input
+        id="confirmPassword"
+        formControlName="confirmPassword"
+        type="password"
+        placeholder="Confirm your password"
+        class="form-control"
+        required
+      />
+      <div *ngIf="signupForm.hasError('passwordMismatch') && signupForm.get('confirmPassword')?.touched" class="error">
+        Passwords do not match.
+      </div>
+    </div>
+
+    
+
+    <!-- Error Messages -->
+    <div *ngIf="validationErrors.length > 0" class="error-messages">
+      <ul>
+        <li *ngFor="let error of validationErrors">{{ error }}</li>
+      </ul>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" [disabled]="signupForm.invalid" class="btn btn-primary">Sign Up</button>
+    <div class="d-flex justify-content-between">
+      <a href="login"><b>Login as Admin</b></a>
+      <a href="userlogin" class="text-danger"><b>Login as User</b></a>
+
+    </div>
+  </form>
+</div>
+</div>
+</body>

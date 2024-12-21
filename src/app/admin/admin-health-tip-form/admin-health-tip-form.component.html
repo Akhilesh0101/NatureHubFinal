@@ -1,0 +1,117 @@
+<div class="container mt-4 animate__animated animate__fadeIn">
+  <h2 class="text-center mb-4">{{ isEditMode ? 'Edit Health Tip' : 'Add New Health Tip' }}</h2>
+
+  <form (ngSubmit)="onSubmit()" class="form-card shadow-lg p-4 rounded" #healthTipForm="ngForm">
+    <!-- Tip Title Field -->
+    <div class="form-group mb-3">
+      <label for="tipTitle" class="form-label">Tip Title</label>
+      <input 
+        type="text" 
+        id="tipTitle" 
+        class="form-control" 
+        [(ngModel)]="healthTip.TipTitle" 
+        name="tipTitle" 
+        required 
+        minlength="5" 
+        maxlength="70"
+        pattern="^[a-zA-Z ]+$"
+        #tipTitle="ngModel"
+        placeholder="Enter the health tip title"
+      />
+      <div *ngIf="tipTitle.invalid && tipTitle.touched" class="text-danger">
+        <small *ngIf="tipTitle.errors?.['required']">Tip Title is required.</small>
+        <small *ngIf="tipTitle.errors?.['minlength']">Tip Title must be at least 5 characters long.</small>
+        <small *ngIf="tipTitle.errors?.['pattern']">Tip Title can only contain alphabets and spaces.</small>
+      </div>
+    </div>
+
+    <!-- Tip Description Field -->
+    <div class="form-group mb-3">
+      <label for="tipDescription" class="form-label">Description</label>
+      <textarea 
+        id="tipDescription" 
+        class="form-control" 
+        [(ngModel)]="healthTip.TipDescription" 
+        name="tipDescription" 
+        required 
+        minlength="10"
+        rows="4" 
+        #tipDescription="ngModel"
+        placeholder="Enter the health tip description"
+      ></textarea>
+      <div *ngIf="tipDescription.invalid && tipDescription.touched" class="text-danger">
+        <small *ngIf="tipDescription.errors?.['required']">Description is required.</small>
+        <small *ngIf="tipDescription.errors?.['minlength']">Description must be at least 10 characters long.</small>
+        <small *ngIf="tipDescription.errors?.['pattern']">Description can only contain alphabets and spaces.</small>
+      </div>
+    </div>
+
+    <!-- Category ID Field -->
+    <div class="form-group mb-3">
+      <label for="categoryId" class="form-label">Category ID</label>
+      <input
+        type="number"
+        id="categoryId"
+        class="form-control"
+        [(ngModel)]="healthTip.CategoryId"
+        name="categoryId"
+        required
+        min="1"
+        max="5"
+        #categoryId="ngModel"
+        placeholder="Enter the category ID"
+        (focus)="showCategoryInfo = true"
+        (blur)="showCategoryInfo = false"
+      />
+      <!-- Helper Information -->
+      <div class="text-secondary small mt-1" *ngIf="showCategoryInfo">
+        Enter a Category ID:
+        <ul class="list-unstyled ms-3">
+          <li><strong>1</strong>: Hair</li>
+          <li><strong>2</strong>: Skin</li>
+          <li><strong>3</strong>: Body</li>
+          <li><strong>4</strong>: Digestion</li>
+          <li><strong>5</strong>: Immunity</li>
+        </ul>
+      </div>
+      <!-- Error Messages -->
+      <div class="text-danger mt-1" *ngIf="categoryId.touched && categoryId.invalid">
+        <small *ngIf="categoryId.errors?.['required']">Category ID is required.</small>
+        <small *ngIf="categoryId.errors?.['min'] || categoryId.errors?.['max']">
+          Category ID must be between 1 and 5.
+        </small>
+      </div>
+    </div>
+    
+
+    <!-- Health Tip Image Field -->
+    <div class="form-group mb-3">
+      <label for="healthTipImage" class="form-label">Health Tip Image</label>
+      <input 
+        type="file" 
+        id="healthTipImage" 
+        required
+        class="form-control" 
+        (change)="onFileSelect($event)" 
+      />
+      <div class="text-danger" *ngIf="!healthTip.HealthTipsimg && healthTipForm.touched">
+        HealthTips Image is required.
+        
+    </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="text-center">
+      <button 
+        type="submit" 
+        class="btn btn-primary px-4 py-2"
+        [disabled]="healthTipForm.invalid">
+        {{ isEditMode ? 'Update Health Tip' : 'Add Health Tip' }}
+      </button>
+    </div>
+  </form>
+
+  <div class="text-center mt-3">
+    <a href="admin-panel" class="text-decoration-none fw-bold">Go back to Admin panel</a>
+  </div>
+</div>

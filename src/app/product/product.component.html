@@ -1,0 +1,43 @@
+<div class="container mt-5">
+  <h2 class="text-center mb-5 animate__animated animate__fadeInUp">Our Products</h2>
+
+  <div class="row justify-content-center">
+    <!-- Loop through the products and display them -->
+    <div class="col-md-4 col-sm-6 col-xs-12 mb-4 animate__animated animate__fadeInUp" *ngFor="let product of products" [ngStyle]="{ 'animation-delay': '0.2s' }">
+      <div class="card glass-effect" [ngClass]="{'out-of-stock': product.StockQuantity <= 0}">
+        <img *ngIf="product.ProductImage" 
+             [src]="'data:image/jpeg;base64,' + product.ProductImage" 
+             alt="Product Image" />
+        <span *ngIf="!product.ProductImage">No Image</span>      
+        <div class="card-body">
+          <h5 class="card-title">{{ product.ProductName }}</h5>
+          <p class="card-text">{{ product.Description }}</p>
+          <p><strong>Price:</strong> {{ product.Price | currency: 'INR' }}</p>
+
+          <!-- Buttons with hover effects and conditional disabling for out-of-stock products -->
+          <div class="justify-content-between">
+            <button 
+              class="btn btn-primary animate__animated animate__pulse" 
+              (click)="addToCart(product)" 
+              [disabled]="product.StockQuantity <= 0" 
+              [attr.aria-label]="'Add ' + product.ProductName + ' to cart'">
+              Add to Cart
+            </button>
+            <button 
+              class="btn btn-success animate__animated animate__pulse" 
+              (click)="buyNow(product)" 
+              [disabled]="product.StockQuantity <= 0" 
+              [attr.aria-label]="'Buy ' + product.ProductName + ' now'">
+              Buy Now
+            </button>
+          </div>
+
+          <!-- Out of stock indicator -->
+          <div *ngIf="product.StockQuantity <= 0" class="out-of-stock-label">
+            <p class="text-center text-danger">Out of Stock</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

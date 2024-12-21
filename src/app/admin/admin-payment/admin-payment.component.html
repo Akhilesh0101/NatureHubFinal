@@ -1,0 +1,25 @@
+<div class="responsive-table-container">
+    <table class="styled-table">
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th>Cart Total</th>
+          <th>Products</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let payment of paymentRecords">
+          <td>{{ userEmail }}</td>
+          <td>₹{{ payment.cartTotal }}</td>
+          <td>
+            <ul>
+              <li *ngFor="let product of payment.products">
+                <strong>{{ product.name }}</strong> - Quantity: {{ product.quantity }}
+              </li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

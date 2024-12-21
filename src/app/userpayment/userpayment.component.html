@@ -1,0 +1,26 @@
+<div class="payment-container">
+    <div class="payment-card">
+      <h2 class="payment-title">Payment Details</h2>
+      <div class="details">
+        <p><strong>Email:</strong> {{ userEmail }}</p>
+      </div>
+      <div class="table-wrapper">
+        <table class="payment-table">
+          <thead>
+            <tr>
+              <th>Product Name</th>
+              <th>Quantity</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of products">
+              <td>{{ product.name }}</td>
+              <td>{{ product.quantity }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="total-amount"><strong>Total Amount:</strong> ₹{{ cartTotal }}</p>
+    </div>
+  </div>
+  

@@ -1,0 +1,39 @@
+/* Add a smooth scale animation */
+.profile-card {
+  max-width: 400px;
+  width: 100%;
+  animation: fadeIn 1s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+}
+
+.profile-card:hover {
+  transform: scale(1.05); /* Slightly scale the card on hover */
+}
+
+/* Animation to make the card fade in */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Make sure the card is centered both horizontally and vertically */
+.container {
+  margin-left: 450px;
+  margin-top: 150px;
+  }
+
+/* For smaller screens */
+@media (max-width: 576px) {
+  .profile-card {
+    padding: 2rem;
+  }
+  .container{
+    margin: 0%;
+  }
+}

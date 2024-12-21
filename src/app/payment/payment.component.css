@@ -1,0 +1,64 @@
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+button {
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+ul {
+  list-style-type: none;
+}
+
+ul li {
+  cursor: pointer;
+  padding: 10px;
+  background-color: #f2f2f2;
+  margin: 5px 0;
+  
+}
+
+ul li:hover {
+  background-color: #ddd;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  margin-bottom: 10px;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.payment-details {
+  margin-top: 20px;
+}
+
+.maindiv
+{
+  padding: 100px;
+}
+
+/* .ship
+{
+ display: flex-row;
+ justify-content:space-evenly;
+
+} */

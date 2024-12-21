@@ -1,0 +1,22 @@
+<p>cancellation-redfund-policy works!</p>
+<div class="policy-container">
+    <h1>{{ policyTitle }}</h1>
+    <p [ngStyle]="{ 'text-align': 'center', 'font-size.px': 22 }">
+      {{ introText }}
+    </p>
+  </div>
+  
+  <h2>1. {{ cancellationPolicyTitle }}</h2>
+  <p>{{ cancellationPolicyText }}</p>
+  
+  <h2>2. {{ nonRefundableItemsTitle }}</h2>
+  <p>{{ nonRefundableItemsText }}</p>
+  
+  <h2>3. {{ processingRefundsTitle }}</h2>
+  <p>{{ processingRefundsText }}</p>
+  
+  <h2>4. {{ contactUsTitle }}</h2>
+  <p>
+    {{ contactUsText }}
+    <a [href]="'mailto:' + contactEmail">{{ contactEmail }}</a>.
+  </p>

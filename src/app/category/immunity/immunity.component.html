@@ -1,0 +1,36 @@
+<div class="product-container">
+    <div *ngFor="let product of products" class="product-card">
+      <img *ngIf="product.ProductImage" 
+      [src]="'data:image/jpeg;base64,' + product.ProductImage" 
+      width="400"height="200" alt="image not available" />
+ <span *ngIf="!product.ProductImage">No Image</span>         <h3>{{ product.ProductName }}</h3>
+      <p>{{ product.Description }}</p>
+      <div class="product-price">{{ product.Price | currency:'INR' }}</div>
+      <!-- Buttons with hover effects and conditional disabling for out-of-stock products -->
+      <div class="d-flex justify-content-between mt-3 mb-3">
+        <button 
+          class="btn btn-danger w-45 animate__animated animate__pulse" 
+          (click)="addToCart(product)" 
+          [disabled]="product.StockQuantity <= 0" 
+          [attr.aria-label]="'Add ' + product.ProductName + ' to cart'"
+        >
+          Add to Cart
+        </button>
+        <button 
+          class="btn btn-success w-45 animate__animated animate__pulse" 
+          (click)="buyNow(product)" 
+          [disabled]="product.StockQuantity <= 0" 
+          [attr.aria-label]="'Buy ' + product.ProductName + ' now'"
+        >
+          Buy Now
+        </button>
+      </div>
+
+      <!-- Out of stock indicator -->
+      <div *ngIf="product.StockQuantity <= 0" class="out-of-stock-label">
+        <p class="text-center text-danger">Out of Stock</p>
+      </div>
+    </div>
+    
+  </div>
+  
