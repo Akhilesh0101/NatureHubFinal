@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
       return;
     }
 
-    const remindTime = sessionStorage.getItem('remindTime');
+    const remindTime = localStorage.getItem('remindTime');
     if (remindTime) {
       const currentTime = new Date().getTime();
       if (currentTime >= parseInt(remindTime)) {
@@ -57,7 +57,7 @@ export class HomeComponent implements OnInit {
 
   remindLater() {
     this.showPopup = false;
-    const remindTime = new Date().getTime() + 20000;  // 20 seconds later for testing
+    const remindTime = new Date().getTime() + 5000;  // 5 seconds later for testing
     localStorage.setItem('remindTime', remindTime.toString());
   }
 
@@ -84,9 +84,16 @@ export class HomeComponent implements OnInit {
   }
 
   getRandomProducts(products: Product[], count: number): Product[] {
-    const shuffled = [...products].sort(() => 0.5 - Math.random()); // Randomize products
-    return shuffled.slice(0, count);  // Take the first `count` products
+    // Filter products with StockQuantity > 0
+    const availableProducts = products.filter(product => product.StockQuantity > 0);
+  
+    // Sort filtered products by StockQuantity in ascending order
+    const sortedByStock = availableProducts.sort((a, b) => a.StockQuantity - b.StockQuantity);
+  
+    // Take the first count products
+    return sortedByStock.slice(0, count);
   }
+  
 
   addToCart(product: Product) {
     if (product && product.ProductId) {

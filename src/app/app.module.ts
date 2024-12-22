@@ -67,7 +67,6 @@ export function tokenGetter() {
     DigestionComponent,
     PopupComponent,
     DashboardComponent,
-    AdminPaymentComponent,
     UserpaymentComponent,
     
     

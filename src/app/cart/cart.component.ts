@@ -53,7 +53,7 @@ export class CartComponent implements OnInit {
       cartTotal: this.cartTotal,
       products: this.cartItems.map(item => ({
         name: item.product.ProductName,
-        userEmail: localStorage.getItem('email') ,
+        // userEmail: localStorage.getItem('email') ,
         quantity: item.quantity,
       })),
     };
