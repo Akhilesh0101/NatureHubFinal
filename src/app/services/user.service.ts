@@ -20,7 +20,6 @@ export class UserService {
   storeUserData(user: User): void {
     sessionStorage.setItem('userId', user.userId.toString());
     sessionStorage.setItem('username', user.username);
-    sessionStorage.setItem('userImage', user.userImage);
     sessionStorage.setItem('email', user.email);
     sessionStorage.setItem('password',user.password);
   }
@@ -37,7 +36,6 @@ export class UserService {
       return {
         userId: parseInt(userId),
         username: username,
-        userImage: userImage,
         email: email,
         password:password,
       };

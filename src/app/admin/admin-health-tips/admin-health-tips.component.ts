@@ -4,6 +4,7 @@ import { Router } from '@angular/router'; // Router for navigation
 import { FormsModule } from '@angular/forms';
 import { ReadHealthTipDTO } from '../../models/health-tips-dto.Model';
 import { HealthTipsService } from '../../admin-services/health-tips.service';
+import { ToastrServiceWrapper } from '../../toastr.service';
 
 @Component({
   selector: 'app-admin-health-tips',
@@ -16,7 +17,8 @@ export class AdminHealthTipsComponent implements OnInit {
 
   constructor(
     private healthTipsService: HealthTipsService,  // Inject health tip service
-    private router: Router  // Inject router for navigation
+    private router: Router ,// Inject router for navigation
+    private toastr:ToastrServiceWrapper 
   ) { }
 
   ngOnInit(): void {
@@ -56,7 +58,7 @@ export class AdminHealthTipsComponent implements OnInit {
       this.healthTipsService.deleteHealthTip(id).subscribe(
         () => {
           this.healthTips = this.healthTips.filter((tip) => tip.TipId !== id);  // Remove deleted tip from the list
-          console.log('Health tip deleted successfully');
+          this.toastr.success('Health tip deleted successfully');
         },
         (error) => {
           console.error('Error deleting health tip:', error);  // Handle error during deletion

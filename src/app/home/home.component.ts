@@ -98,7 +98,6 @@ export class HomeComponent implements OnInit {
   addToCart(product: Product) {
     if (product && product.ProductId) {
       this.cartService.addToCart(product);
-      this.toastr.success(`${product.ProductName} added to cart!`);
     } else {
       console.error('Invalid product:', product);
       this.toastr.error('Failed to add product to cart', 'Error');

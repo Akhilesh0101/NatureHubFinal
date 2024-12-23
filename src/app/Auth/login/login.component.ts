@@ -30,7 +30,6 @@ export class LoginComponent {
     let isValid = true;
 
     // Username Validation
-    // Username Validation
     const usernameRegex = /^[a-zA-Z ]{4,20}$/; // Only letters and spaces, 4-20 characters
   if (!this.username || !usernameRegex.test(this.username)) {
     this.usernameError = 'Username must be 4-20 characters long and contain only alphabets';

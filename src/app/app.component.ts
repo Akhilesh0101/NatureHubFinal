@@ -12,7 +12,7 @@ import { NavigationEnd, Router } from '@angular/router';
 export class AppComponent {
   title = 'NatureNew';
   showNav: boolean = true;
-  excludedRoutes: string[] = ['/login','/dashboard', '/admin-product-form','/admin-remedies-form','/admin-health-tip-form','/signup','/admin-panel','/admin-pay','/admin-user-details','/admin-profile','/admin-product','admin-product-form','/admin-remedies','admin-remedies-form','/admin-management','/admin-health-tips','admin-health-tip-form', '/admin-user-management', '/successpay','/userlogin']; // Add paths where you don't want nav
+  excludedRoutes: string[] = ['/login','/dashboard', '/admin-product-form','/admin-product-form?id=30','/admin-remedies-form','/admin-health-tip-form','/signup','/admin-panel','/admin-pay','/admin-user-details','/admin-profile','/admin-product','admin-product-form','/admin-remedies','admin-remedies-form','/admin-management','/admin-health-tips','admin-health-tip-form', '/admin-user-management', '/successpay','/userlogin']; // Add paths where you don't want nav
 
   constructor(private router: Router) {
     this.router.events.subscribe(event => {

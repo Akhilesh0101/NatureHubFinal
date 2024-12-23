@@ -30,11 +30,11 @@ import { AdminHealthTipsComponent } from './admin/admin-health-tips/admin-health
 import { AdminUserDetailsComponent } from './admin/admin-user-details/admin-user-details.component';
 import { AdminProfileComponent } from './admin/admin-profile/admin-profile.component';
 import { AdminHealthTipFormComponent } from './admin/admin-health-tip-form/admin-health-tip-form.component';
-import { UserloginComponent } from './auth/userlogin/userlogin.component';
 import { DashboardComponent } from './Auth/dashboard/dashboard.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { AdminPaymentComponent } from './admin/admin-payment/admin-payment.component';
 import { UserpaymentComponent } from './userpayment/userpayment.component';
+import { UserloginComponent } from './auth/userlogin/userlogin.component';
 
 
 const routes: Routes = [
@@ -49,7 +49,7 @@ const routes: Routes = [
   {path:'bookmark',component:BookmarkComponent,canActivate: [AuthGuard] ,data:{role:'user'}},
   {path:'cart',component:CartComponent,canActivate: [AuthGuard],data:{role:'user'}},
   {path:'payment',component:PaymentComponent,canActivate: [AuthGuard],data:{role:'user'}},
-  {path:'privacy',component:PrivacypolicyComponent},
+  {path:'privacy',component:PrivacypolicyComponent,canActivate:[AuthGuard]},
   {path:'product',component:ProductComponent,canActivate: [AuthGuard],data:{role:'user'}},
   {path:'remedies',component:RemediesComponent,canActivate: [AuthGuard],data:{role:'user'}},
   {path:'healthtips',component:HelthtipsComponent,canActivate: [AuthGuard],data:{role:'user'}},

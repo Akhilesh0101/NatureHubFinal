@@ -17,12 +17,34 @@ export class CartService {
   }
 
   // Add to cart logic (already exists)
-  addToCart(product: Product) {
+   // Add to cart logic (already exists)
+   addToCart(product: Product) {
+    if (!product || !product.ProductId) {
+      console.error('Invalid product:', product); // Log the invalid product
+      return; // Exit if product is invalid
+    }
+  
     const existingProduct = this.cartItems.find(item => item.product.ProductId === product.ProductId);
+    // If the product is already in the cart
     if (existingProduct) {
-      existingProduct.quantity += 1;
+      if (product.StockQuantity>1) {
+        existingProduct.quantity += 1; // Increment quantity
+        this.toastr.success(`One more ${product.ProductName} is added to cart!!`)
+
+      } else {
+        this.toastr.warning(`Sorry, only ${product.StockQuantity} left in stock.`); // Notify about stock limit
+        return;
+      }
     } else {
-      this.cartItems.push({ product, quantity: 1 });
+      // Add product to cart only if stock is available
+      if (product.StockQuantity > 0) {
+        this.cartItems.push({ product, quantity: 1 });
+        this.toastr.success(`${product.ProductName} is successfully added to cart!!`)
+
+      } else {
+        this.toastr.error('Out of stock!'); // Notify if out of stock
+        return;
+      }
     }
     product.StockQuantity -= 1;
     this.productService.updateProductStock(product.ProductId, product.StockQuantity).subscribe(
@@ -30,7 +52,7 @@ export class CartService {
         console.log(`Stock updated successfully for ${product.ProductName}`);
       },
       (error) => {
-        console.error(`Failed to update stock for ${product.ProductName}:`, error);
+        console.error(`Failed to update stock for ${product.ProductName}:, error`);
       }
     );
     this.saveCart();
@@ -41,10 +63,10 @@ export class CartService {
     const productInCart = this.cartItems.find(item => item.product.ProductId === productId);
   
     if (productInCart) {
-      const availableStock = productInCart.product.StockQuantity + productInCart.quantity; // Include current cart quantity in available stock
+      const availableStock = productInCart.product.StockQuantity + productInCart.quantity -1; // Include current cart quantity in available stock
   
       if (newQuantity > availableStock) {
-        alert(`Cannot update quantity. Stock is insufficient! Available stock: ${availableStock}.`);
+        this.toastr.warning(`Can't update quantity, Only one left in stock`);
       } else if (newQuantity >= 1) {
         // Update stock quantity based on the difference
         const quantityChange = newQuantity - productInCart.quantity;

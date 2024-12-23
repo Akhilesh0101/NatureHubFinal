@@ -30,7 +30,6 @@ export class HairComponent implements OnInit {
   addToCart(product: Product) {
     if (product && product.ProductId) {  // Check if product is valid
       this.cartService.addToCart(product);
-      this.toastr.success(`${product.ProductName} added to cart!`);
     } else {
       this.toastr.error('Invalid product', 'Error');
     }

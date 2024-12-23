@@ -30,7 +30,6 @@ export class BodyComponent implements OnInit{
   addToCart(product: Product) {
     if (product && product.ProductId) {  // Check if product is valid
       this.cartService.addToCart(product);
-      this.toastr.success(`${product.ProductName} added to cart!`);  // Show success toast
     } else {
       this.toastr.error('Invalid product', 'Error');
 

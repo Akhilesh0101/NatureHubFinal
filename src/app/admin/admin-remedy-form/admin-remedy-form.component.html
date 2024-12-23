@@ -24,6 +24,7 @@
         <small *ngIf="remedyName.errors?.['required']">Remedy Name is required.</small>
         <small *ngIf="remedyName.errors?.['minlength']">Remedy Name must be at least 5 characters long.</small>
         <small *ngIf="remedyName.errors?.['pattern']">Remedy Name can only contain alphabets and spaces.</small>
+        <small *ngIf="remedyName.errors?.['maxlength']">Remedy Name can contain maximum 50 alphabets</small>
       </div>
     </div>
 
