@@ -45,7 +45,7 @@ const routes: Routes = [
   {path:'signup',component:SignupComponent},
   {path:'login',component:LoginComponent},
   {path:'userlogin',component:UserloginComponent},
-  {path:'aboutus',component:AboutusComponent},
+  {path:'aboutus',component:AboutusComponent,canActivate:[AuthGuard]},
   {path:'bookmark',component:BookmarkComponent,canActivate: [AuthGuard] ,data:{role:'user'}},
   {path:'cart',component:CartComponent,canActivate: [AuthGuard],data:{role:'user'}},
   {path:'payment',component:PaymentComponent,canActivate: [AuthGuard],data:{role:'user'}},
